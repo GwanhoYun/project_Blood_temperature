@@ -1,0 +1,271 @@
+@font-face {
+    font-family: 'fonts';
+    src: url('fonts/OpenSans-Regular.ttf')format('truetype');
+    font-style: normal;
+    unicode-range: U+0041-005A, U+0061-007A;
+}
+
+@font-face {
+    font-family: 'fonts';
+    src: url('fonts/NotoSansKR-Regular.ttf')format('truetype');
+    font-style: normal;
+    unicode-range: U+AC00-D7A3, U+0030-0039;
+}
+
+@font-face {
+    font-family: 'fonts';
+    src: url('fonts/NotoSansJP-Regular.ttf')format('truetype');
+    unicode-range: U+3041-3096, U+309D, U+309E, U+30A1-30FA, U+30FC, U+4E00-9FEA;
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EBEBEB;
+}
+
+.header_container {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    align-items: center;
+    padding: 10px;
+    background-color: #6577ff;
+}
+
+.header_Logo img {
+    width: 80%;
+}
+
+.login_info {
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+    width: 30vw;
+    margin-right: 50px;
+    align-items: center;
+}
+
+.login_info .user_name {
+    color: #fff;
+    font-size: 1em;
+}
+
+.login_info button {
+    width: 70px;
+    height: 30px;
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.dropdown_side {
+    position: absolute;
+    width: 120px;
+    height: auto;
+    left: 30px;
+    top: 110px;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px #acacac;
+    border-radius: 15px;
+}
+
+.dropdown_side div {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 25px 0;
+}
+
+.dropdown_side ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s, max-height 0.75s;
+}
+
+.dropdown_side:hover ul {
+    opacity: 1;
+    max-height: 2000px;
+}
+
+.dropdown_side li {
+    padding: 25px 0;
+}
+
+.dropdown_side a {
+    text-decoration: none;
+    color: #000;
+}
+
+.dropdown_side a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #000;
+}
+
+.main_container {
+    position: relative;
+    margin: 35px auto 0 170px;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px #acacac;
+    border-radius: 15px;
+    width: 85vw;
+    height: auto;
+    padding: 10px;
+}
+
+.main_top {
+    display: flex;
+    width: 88vw;
+    /* justify-content: space-between; */
+}
+
+.chart_aria {
+    display: flex;
+    gap: 150px;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px #acacac;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.temp_class{
+    font-weight: bold;
+}
+
+.graph {
+    width: 40vw;
+    height: auto;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.temp_container {
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #acacac;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.temp_class {
+    padding: 0 15px;
+}
+
+.blood_tem_chart {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-right: 15px;
+    margin-right: 50px;
+}
+
+.blood_type h2,
+.storage_temperature h2 {
+    border-bottom: 3px solid #000;
+}
+
+.storage_temperature {
+    text-align: center;
+}
+
+.blood_type {
+    width: auto;
+}
+
+.button_container {
+    display: grid;
+    align-content: center;
+    gap: 5px;
+    transform: translateX(-120px);
+    z-index: 0;
+}
+
+.button_container input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: none;
+}
+
+.button_container label {
+    background-color: #acacac;
+    width: 200px;
+    height: 50px;
+    text-align: end;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    transition: background-color 0.3s ease, transform 0.3s ease-in-out;
+}
+
+.button_container span {
+    margin: auto 20px auto 0;
+}
+
+.button_container input[type="radio"]:checked+label {
+    background-color: #E71515;
+    color: white;
+    transform: translateX(50px);
+}
+
+.main_bottom {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.main_bottom h2:not(.watch h2){
+    margin-bottom: 20px;
+}
+
+.warning_container {
+    padding: 20px;
+    width: 50vw;
+    height: 280px;
+    box-shadow: 2px 2px 5px #acacac;
+    border-radius: 15px;
+}
+
+.received_paid_container {
+    padding: 20px;
+    width: 70vw;
+    height: 280px;
+    box-shadow: 2px 2px 5px #acacac;
+    border-radius: 15px;
+}
+
+.watch {
+    padding: 20px;
+    width: 20vw;
+    box-shadow: 2px 2px 5px #acacac;
+    border-radius: 15px;
+}
+
+.date {
+    font-size: 1.5em;
+    color: #000;
+    /* 흰색 */
+}
+
+.time {
+    font-size: 2em;
+    font-weight: bold;
+    color: #E71515;
+    /*보라색 */
+}
