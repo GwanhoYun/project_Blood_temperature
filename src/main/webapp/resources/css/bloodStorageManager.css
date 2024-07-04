@@ -152,23 +152,25 @@ body {
 }
 
 .temp_container {
-    display: grid;
-    grid-template-columns: 1fr 50px;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    padding: 0 20px;
+    height: 42px;
     border-radius: 10px;
     box-shadow: 2px 2px 5px #acacac;
     align-items: center;
     margin-bottom: 10px;
 }
-
-.temp_class {
-    padding: 0 15px;
+.temp_container > div:nth-child(2){
+    width: 60px;
 }
 
-.blood_tem_chart {
-    display: grid;
-    grid-template-columns: 1fr;
-    padding-right: 15px;
-    margin-right: 50px;
+
+.blood_tem_chart h2{
+    text-align: center;
+    padding-bottom: 20px;
+    padding-right: 65px;
 }
 
 .blood_type h2,
