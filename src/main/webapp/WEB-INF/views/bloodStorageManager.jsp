@@ -155,7 +155,7 @@
                         <div id="time" class="time"></div>
                     </div>
                     <div>
-                    	<a href="#">Request Support</a>
+                    	<a href="kakako">Request Support</a>
                     </div>
                 </div>
             </div>
