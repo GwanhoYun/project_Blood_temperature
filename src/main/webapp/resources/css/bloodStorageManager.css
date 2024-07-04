@@ -127,7 +127,6 @@ body {
 .main_top {
     display: flex;
     width: 88vw;
-    /* justify-content: space-between; */
 }
 
 .chart_aria {
