@@ -262,12 +262,10 @@ body {
 .date {
     font-size: 1.5em;
     color: #000;
-    /* 흰색 */
 }
 
 .time {
     font-size: 2em;
     font-weight: bold;
     color: #E71515;
-    /*보라색 */
 }
