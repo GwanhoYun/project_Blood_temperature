@@ -71,6 +71,26 @@ document.querySelectorAll('input[name="blood_product"]').forEach(function (radio
   });
 });
 
+function fetchBloodData() {
+    fetch('/newtemdata')
+        .then(response => response.json())
+        .then(data => {
+            // 여기서 data는 JSON 형식의 배열이 됩니다.
+            data.forEach(blood => {
+                // 각 blood_product에 해당하는 id에 _Temp를 붙여 DOM 요소에 데이터 삽입
+                let element = document.getElementById(blood.blood_product + '_Temp');
+                if (element) {
+                    element.innerText = blood.temperature;
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching blood data:', error));
+}
+
+// 페이지 로드 시 데이터를 한 번 가져오고, 그 이후에 10초마다 데이터를 갱신합니다.
+fetchBloodData();
+setInterval(fetchBloodData, 10000);
+
 function setClock() {
   var dateInfo = new Date();
   var hour = modifyNumber(dateInfo.getHours());
