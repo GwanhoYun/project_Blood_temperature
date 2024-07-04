@@ -30,7 +30,7 @@ public class BoardController {
 	// 게시판 목록 리스트
 	public String list (Model model, CriteriaVO cri) {
 		System.out.println(cri);
-		// list.jsp 실행 할 때 select 된 결과를 가져와라
+		// 수정한 주석입니다 수정한 주석입니다
 		model.addAttribute("list", bs.list(cri));
 		// list.jsp 실행 할 때 PageVO에 저장되어 있는 데이터를 가져와라.
 		//                           생성자 호출(매개변수가 2개인 생성자)
