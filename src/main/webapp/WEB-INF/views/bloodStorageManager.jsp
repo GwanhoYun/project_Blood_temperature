@@ -149,9 +149,14 @@
                     <p class="Received_Paid_text"></p>
                 </div>
                 <div class="watch">
-                    <h2>Current Time</h2>
-                    <div id="date" class="date"></div>
-                    <div id="time" class="time"></div>
+                    <div>
+                        <h2>Current Time</h2>
+                        <div id="date" class="date"></div>
+                        <div id="time" class="time"></div>
+                    </div>
+                    <div>
+                    	<a href="#">Request Support</a>
+                    </div>
                 </div>
             </div>
         </div>
