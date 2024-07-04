@@ -58,59 +58,57 @@
                         <canvas id="line-chart" width="auto" height="auto"></canvas>
                     </div>
                     <div class="blood_tem_chart">
-                        <c:forEach var="patient" items="${patients}">
                             <h2 style="text-align: center;">Blood product Storage Temp</h2>
                             <div></div>
                             <div class="temp_container">
                                 <div class="temp_class">Red Blood Cells</div>
                                 <div>
-                                    <span class="RBC_Temp">${patient.temperature}</span>
+                                    <span id="RBC_Temp" class="RBC_Temp"></span>
                                     <span>°C</span>
                                 </div>
                             </div>
                             <div class="temp_container">
                                 <div class="temp_class">Platelets</div>
                                 <div>
-                                    <span class="PLT_Temp">${patient.temperature}</span>
+                                    <span id="RLT_Temp" class="RLT_Temp"></span>
                                     <span>°C</span>
                                 </div>
                             </div>
                             <div class="temp_container">
                                 <div class="temp_class">Fresh Frozen Plasma</div>
                                 <div>
-                                    <span class="FFP_Temp">${patient.temperature}</span>
+                                    <span id="FFP_Temp" class="FFP_Temp"></span>
                                     <span>°C</span>
                                 </div>
                             </div>
                             <div class="temp_container">
                                 <div class="temp_class">Cryoprecipitates</div>
                                 <div>
-                                    <span class="Cryo_Temp">${patient.temperature}</span>
+                                    <span id="Cryo_Temp" class="Cryo_Temp"></span>
                                     <span>°C</span>
                                 </div>
                             </div>
                             <div class="temp_container">
                                 <div class="temp_class">Leukocyte-Reduced Blood</div>
                                 <div>
-                                    <span class="LRB_Temp">${patient.temperature}</span>
+                                    <span id="LRB_Temp" class="LRB_Temp"></span>
                                     <span>°C</span>
                                 </div>
                             </div>
                             <div class="temp_container">
                                 <div class="temp_class">Irradiated Blood</div>
                                 <div>
-                                    <span class="IB_Temp">${patient.temperature}</span>
+                                    <span id="IB_Temp" class="IB_Temp"></span>
                                     <span>°C</span>
                                 </div>
                             </div>
                             <div class="temp_container">
                                 <div class="temp_class">Washed Blood</div>
                                 <div>
-                                    <span class="WB_Temp">${patient.temperature}</span>
+                                    <span id="WB_Temp" class="WB_Temp"></span>
                                     <span>°C</span>
                                 </div>
                             </div>
-                        </c:forEach>
                     </div>
                 </div>
                 <div class="button_container">

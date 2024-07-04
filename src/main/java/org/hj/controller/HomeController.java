@@ -13,17 +13,11 @@ import java.util.List;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/")
 public class HomeController {
 
 	@Autowired
     private PatientService patientService;
 
-    @GetMapping
-    public String getAllPatients(Model model) {
-        List<PatientVo> patients = patientService.getAllPatients();
-        model.addAttribute("patients", patients);
-        return "bloodStorageManager";
-    }
+
 }
 

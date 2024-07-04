@@ -17,9 +17,8 @@ public class KakaoController {
     private PatientService patientService;
 
     @GetMapping
-    public String getAllPatients(Model model) {
-        List<PatientVo> patients = patientService.getAllPatients();
-        model.addAttribute("patients", patients);
+    public String getAllPatients() {
+        
         return "patientList";
     }
 }
