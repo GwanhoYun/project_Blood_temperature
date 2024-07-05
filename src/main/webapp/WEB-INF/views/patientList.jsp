@@ -7,117 +7,6 @@
     <meta charset="UTF-8">
     <title>주변 병원 찾기</title>
     <style>
-    @font-face {
-    font-family: 'fonts';
-    src: url('fonts/OpenSans-Regular.ttf')format('truetype');
-    font-style: normal;
-    unicode-range: U+0041-005A, U+0061-007A;
-}
-
-@font-face {
-    font-family: 'fonts';
-    src: url('fonts/NotoSansKR-Regular.ttf')format('truetype');
-    font-style: normal;
-    unicode-range: U+AC00-D7A3, U+0030-0039;
-}
-
-@font-face {
-    font-family: 'fonts';
-    src: url('fonts/NotoSansJP-Regular.ttf')format('truetype');
-    unicode-range: U+3041-3096, U+309D, U+309E, U+30A1-30FA, U+30FC, U+4E00-9FEA;
-}
-
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-.header_container {
-    display: flex;
-    justify-content: space-between;
-    width: 100vw;
-    align-items: center;
-    padding: 10px;
-    background-color: #6577ff;
-}
-
-.header_Logo img {
-    width: 80%;
-}
-
-.login_info {
-    display: flex;
-    justify-content: end;
-    gap: 15px;
-    width: 30vw;
-    margin-right: 50px;
-    align-items: center;
-}
-
-.login_info .user_name {
-    color: #fff;
-    font-size: 1em;
-}
-
-.login_info button {
-    width: 70px;
-    height: 30px;
-    background-color: #fff;
-    border: none;
-    border-radius: 5px;
-}
-
-.dropdown_side {
-    position: absolute;
-    width: 120px;
-    height: auto;
-    left: 30px;
-    top: 110px;
-    background-color: #fff;
-    box-shadow: 2px 2px 5px #acacac;
-    border-radius: 15px;
-    z-index: 99;
-}
-
-.dropdown_side div {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    padding: 25px 0;
-}
-
-.dropdown_side ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: opacity 0.5s, max-height 0.75s;
-}
-
-.dropdown_side:hover ul {
-    opacity: 1;
-    max-height: 2000px;
-}
-
-.dropdown_side li {
-    padding: 25px 0;
-}
-
-.dropdown_side a {
-    text-decoration: none;
-    color: #000;
-}
-
-.dropdown_side a:hover {
-    text-decoration: underline;
-    font-weight: bold;
-    color: #000;
-}
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -171,49 +60,13 @@
     </style>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=40cc655b8725105eadd83e922c398a13&libraries=services"></script>
 </head>
-<header>
-        <div class="header_container">
-            <div class="header_Logo">
-                <a href="index.html">
-                    <img src="img/Logo_white 1.png" alt="Hospital_Logo_image">
-                </a>
-            </div>
-            <div class="login_info">
-                <div class="user_name">
-                    <span>흉부외과</span>
-                    <span>&nbsp/&nbsp</span>
-                    <span><b>곽두팔</b></span>
-                    <span>&nbsp님</span>
-                </div>
-                <div>
-                    <button type="button">로그아웃</button>
-                </div>
-            </div>
-        </div>
-    </header>
-     <nav class="dropdown_side">
-        <div>
-            <p>menu</p>
-        </div>
-        <ul>
-            <li><a href="adminPage.html">차트리스트</a></li>
-            <li><a href="writeChart.html">차트작성</a></li>
-            <li><a href="bloodStorageManager.html">혈액 보유량</a></li>
-            <li><a href="#">수술</a></li>
-            <li><a href="#">스케줄</a></li>
-            <li><a href="#">스케줄수정</a></li>
-            <li><a href="#">외래</a></li>
-            <li><a href="#">메신저</a></li>
-            <li><a href="#">협진요청</a></li>
-            <li><a href="#">승인요청</a></li>
-        </ul>
-    </nav>
 <body>
     <h1>주변 병원 찾기</h1>
-      <div id="container">
-          <div id="map"></div>
-          <ul id="places"></ul>
-      </div>
+
+    <div id="container">
+        <div id="map"></div>
+        <ul id="places"></ul>
+    </div>
     <button id="requestBloodButton">혈액 요청하기</button>
 
     <script>
@@ -224,6 +77,8 @@
         let selectedPlace = null;
         let markers = [];
         let bloodCounts = {};
+        let select_bloodCounts;
+        let request_Blood;
 
         function getLocation() {
             if ("geolocation" in navigator) {
@@ -273,6 +128,8 @@
                                         infowindow.setContent('<div style="padding:10px;min-width:200px;">' + place.place_name + '<br>' + bloodInfo + '</div>');
                                         infowindow.open(map, placeMarker);
 
+                                        //혈액갯수 정보 값 변수에 저장
+                                        select_bloodCounts = bloodCounts[place.id];
                                         // 선택된 병원 정보를 저장
                                         selectedPlace = place;
                                         // 혈액 요청 버튼을 표시
