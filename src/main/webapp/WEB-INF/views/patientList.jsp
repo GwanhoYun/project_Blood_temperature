@@ -77,6 +77,8 @@
         let selectedPlace = null;
         let markers = [];
         let bloodCounts = {};
+        let select_bloodCounts;
+        let request_Blood;
 
         function getLocation() {
             if ("geolocation" in navigator) {
@@ -126,6 +128,8 @@
                                         infowindow.setContent('<div style="padding:10px;min-width:200px;">' + place.place_name + '<br>' + bloodInfo + '</div>');
                                         infowindow.open(map, placeMarker);
 
+                                        //혈액갯수 정보 값 변수에 저장
+                                        select_bloodCounts = bloodCounts[place.id];
                                         // 선택된 병원 정보를 저장
                                         selectedPlace = place;
                                         // 혈액 요청 버튼을 표시
@@ -165,8 +169,13 @@
         var requestBloodButton = document.getElementById('requestBloodButton');
         requestBloodButton.addEventListener('click', function() {
             if (selectedPlace) {
-            	let request_Blood=prompt('몇개의 혈액을 요청하시겠습니까?(숫자만 입력하세요)');
-                alert(request_Blood+`개의 혈액 요청이 전달되었습니다.`);
+			            request_Blood=prompt('몇개의 혈액을 요청하시겠습니까?(숫자만 입력하세요) 최대'+select_bloodCounts+"개");
+						            	 if(request_Blood<=select_bloodCounts){
+						                alert(request_Blood+`개의 혈액 요청이 전달되었습니다.`);
+						            	 }
+						            	 else{
+						            		 alert(select_bloodCounts+"개보다 작은 숫자를 입력하세요")
+						            	 }
                 // 추가적인 요청 처리 로직을 여기에 추가할 수 있습니다.
             } else {
                 alert('병원을 선택해주세요.');
