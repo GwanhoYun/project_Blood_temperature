@@ -10,7 +10,7 @@ public class TemScheduling {
     @Autowired
     private PatientService TemS;
 
-    // 10초마다 실행
+    // 데이터베이스에 쌓이는 온도데이터의 삭제를 1분마다 실행
     @Scheduled(fixedRate = 60000)
     public void deleteOldTemperatures() {
     	TemS.deleteOld();

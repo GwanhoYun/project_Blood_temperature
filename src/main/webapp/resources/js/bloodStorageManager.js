@@ -1,50 +1,59 @@
 var chartData = {
-  labels: ["12:00", "12:00", "12:00", "12:00", "12:00", "12:00", "12:00", "12:00", "12:00", "12:00"],
-  datasets: [{
-    data: [3, 2.7, 2.5, 2.9, 3.1, 2.8, 3.1, 2.5, 7, 2],
-    label: "RBC",
-    borderColor: "#f1896d",
-    fill: false
-  }, {
-    data: [0, 350, 411, 502, 635, 809, 947, 1402, 3700, 5],
-    label: "PLT",
-    borderColor: "#f1cd6d",
-    fill: false
-  }, {
-    data: [168, 170, 178, 190, 203, 276, 408, 547, 675, 734],
-    label: "FFP",
-    borderColor: "#dff163",
-    fill: false
-  }, {
-    data: [40, 20, 10, 16, 24, 38, 74, 167, 508, 784],
-    label: "Cryo",
-    borderColor: "#1bff36",
-    fill: false
-  }, {
-    data: [6, 3, 2, 2, 7, 26, 82, 172, 312, 433],
-    label: "LRB",
-    borderColor: "#81f163",
-    fill: false
-  }, {
-    data: [6, 3, 2, 2, 7, 26, 82, 172, 312, 433],
-    label: "IB",
-    borderColor: "#6df1e6",
-    fill: false
-  }, {
-    data: [6, 3, 2, 2, 7, 26, 82, 172, 312, 433],
-    label: "WB",
-    borderColor: "#6d73f1",
-    fill: false
-  }
+  labels: [],
+  datasets: [
+    {
+      data: [],
+      label: "RBC",
+      borderColor: "#f1896d",
+      fill: false
+    },
+    {
+      data: [],
+      label: "PLT",
+      borderColor: "#f1cd6d",
+      fill: false
+    },
+    {
+      data: [],
+      label: "FFP",
+      borderColor: "#dff163",
+      fill: false
+    },
+    {
+      data: [],
+      label: "Cryo",
+      borderColor: "#1bff36",
+      fill: false
+    },
+    {
+      data: [],
+      label: "LRB",
+      borderColor: "#81f163",
+      fill: false
+    },
+    {
+      data: [],
+      label: "IB",
+      borderColor: "#6df1e6",
+      fill: false
+    },
+    {
+      data: [],
+      label: "WB",
+      borderColor: "#6d73f1",
+      fill: false
+    }
   ]
 };
+
+var maxDataPoints = 7; // 그래프에 출력 가능한 최대 데이터 포인트 수
 
 var ctx = document.getElementById('line-chart').getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
     labels: chartData.labels,
-    datasets: chartData.datasets // 초기 데이터셋을 모든 데이터로 설정
+    datasets: chartData.datasets
   },
   options: {
     title: {
@@ -53,6 +62,57 @@ var myChart = new Chart(ctx, {
     }
   }
 });
+
+
+//실시간 온도 출력을 위한 함수 
+function fetchBloodData() {
+    fetch('/newtemdata')
+        .then(response => response.json())
+        .then(data => {
+            // 데이터를 업데이트
+            data.forEach(blood => {
+                // WB 혈액 제품의 시간을 기준으로 labels 배열에 시간을 추가 (그래프)
+                    if (blood.blood_product === "WB") {
+                        chartData.labels.push(blood.record_Time);
+                    }
+
+                // 각 데이터셋에 해당하는 데이터를 추가 (그래프)
+                chartData.datasets.forEach(dataset => {
+                    if (dataset.label === blood.blood_product) {
+                        dataset.data.push(blood.temperature);
+                    }
+                });
+
+                // 데이터 배열이 최대 크기보다 크면 맨 앞 데이터를 제거 (그래프)
+                if (chartData.labels.length > maxDataPoints) {
+                    chartData.labels.shift(); // labels의 첫 번째 요소 제거
+                    chartData.datasets.forEach(dataset => {
+                        dataset.data.shift(); // 각 데이터셋의 첫 번째 요소 제거
+                    });
+                }
+
+                // 요소에 데이터를 삽입 (그래프용 X)
+                let element = document.getElementById(blood.blood_product + '_Temp');
+                if (element) {
+                    element.innerText = blood.temperature;
+                }
+            });
+
+            // 그래프를 업데이트
+            myChart.update();
+        })
+        .catch(error => console.error('Error fetching blood data:', error));
+}
+
+// 페이지 로드 시 데이터를 한 번 가져오고, 그 이후에 12초마다 데이터를 갱신합니다.
+fetchBloodData();
+setInterval(fetchBloodData, 12000);
+
+
+
+
+
+
 
 document.querySelectorAll('input[name="blood_product"]').forEach(function (radio) {
   radio.addEventListener('change', function () {
@@ -70,26 +130,6 @@ document.querySelectorAll('input[name="blood_product"]').forEach(function (radio
     myChart.update(); // 차트를 업데이트하여 변경 사항 반영
   });
 });
-
-function fetchBloodData() {
-    fetch('/newtemdata')
-        .then(response => response.json())
-        .then(data => {
-            // 여기서 data는 JSON 형식의 배열이 됩니다.
-            data.forEach(blood => {
-                // 각 blood_product에 해당하는 id에 _Temp를 붙여 DOM 요소에 데이터 삽입
-                let element = document.getElementById(blood.blood_product + '_Temp');
-                if (element) {
-                    element.innerText = blood.temperature;
-                }
-            });
-        })
-        .catch(error => console.error('Error fetching blood data:', error));
-}
-
-// 페이지 로드 시 데이터를 한 번 가져오고, 그 이후에 10초마다 데이터를 갱신합니다.
-fetchBloodData();
-setInterval(fetchBloodData, 10000);
 
 function setClock() {
   var dateInfo = new Date();
