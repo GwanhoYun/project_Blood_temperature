@@ -10,11 +10,11 @@ import java.util.List;
 @Mapper
 public interface PatientMapper {
 	
-	@Select("SELECT temperature, blood_product " +
+	@Select("SELECT temperature, blood_product, record_time " +
 	        "FROM temper t1 " +
 	        "WHERE record_time = (SELECT MAX(record_time) FROM temper t2 WHERE t1.blood_product = t2.blood_product)")
 	List<TemperVo> getLateData();
    
-    @Delete("DELETE FROM temper WHERE record_time < DATE_SUB(NOW(), INTERVAL 60 SECOND)")
+    @Delete("DELETE FROM temper WHERE record_time < DATE_SUB(NOW(), INTERVAL 80 SECOND)")
     void  deleteOld();
 }

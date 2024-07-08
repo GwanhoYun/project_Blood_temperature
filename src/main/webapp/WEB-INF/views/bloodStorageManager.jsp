@@ -70,7 +70,7 @@
                             <div class="temp_container">
                                 <div class="temp_class">Platelets</div>
                                 <div>
-                                    <span id="RLT_Temp" class="RLT_Temp"></span>
+                                    <span id="PLT_Temp" class="PLT_Temp"></span>
                                     <span>°C</span>
                                 </div>
                             </div>
@@ -140,11 +140,13 @@
             <div class="main_bottom">
                 <div class="warning_container">
                     <h2>Warning</h2>
-                    <p class="warning_text">asdf</p>
+                    <p class="warning_text"></p>
                 </div>
                 <div class="received_paid_container">
                     <h2>Blood Received & Paid</h2>
-                    <p class="Received_Paid_text"></p>
+                    <p class="Received_Paid_text">현재 Cryo 혈액이 매우 부족한 상황입니다. 타 병원에서 Cryo 혈액을 요청해주시기 바랍니다.</p>
+                    <br>
+                    <p class="Received_Paid_text">2024년 6월 20일에 수령한 RBC 혈액의 유통기한이 7일 이내로 다가오고 있습니다. 의료 폐기물 처리 규정에 따라 신속히 폐기해 주시기 바랍니다.</p>
                 </div>
                 <div class="watch">
                     <div>
