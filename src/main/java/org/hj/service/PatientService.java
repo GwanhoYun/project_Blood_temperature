@@ -60,13 +60,13 @@ public class PatientService {
                 data.setTemperature(adjustTemperatureValue(data.getTemperature(), getRandomNum()));
                 break;
             case "FFP":
-                data.setTemperature(adjustTemperatureValue(data.getTemperature(), getRandomNum()-25 ));
+                data.setTemperature(adjustTemperatureValue(data.getTemperature(), getRandomNum()-19 ));
                 break;
             case "Cryo":
                 data.setTemperature(adjustTemperatureValue(data.getTemperature(), getRandomNum()-25 ));
                 break;
             case "LRB":
-                data.setTemperature(adjustTemperatureValue(data.getTemperature(), getRandomNum()));
+                data.setTemperature(adjustTemperatureValue(data.getTemperature(), getRandomNum()+5 ));
                 break;
             case "IB":
                 data.setTemperature(adjustTemperatureValue(data.getTemperature(), getRandomNum()));

@@ -140,7 +140,7 @@
             <div class="main_bottom">
                 <div class="warning_container">
                     <h2>Warning</h2>
-                    <p class="warning_text"></p>
+                    <p class="warning_text" style="color: red; font-weight: bold;"></p>
                 </div>
                 <div class="received_paid_container">
                     <h2>Blood Received & Paid</h2>
