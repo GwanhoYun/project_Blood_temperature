@@ -1,0 +1,101 @@
+/* *는 모든 요소를 지정 기본값이 있기 때문에 0으로 설정 */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* 마진 패딩 포함 없이 요소 자체 크기 설정(절대값으로 설정)*/
+    font-family: 'noto';
+}
+@font-face{
+    font-family: 'noto';
+    src:url("font/NotoSansKR-Regular.ttf")format('truetype');
+    font-style: normal;
+    unicode-range: U+AC00-D7A3,U+0041-005A,U+0061-007A,U+0030-0039;
+}
+
+/* header {
+    width: 100%;
+    height: 75px;
+    background-color: #000;
+} */
+
+.background {
+    width: 99vw;
+    height: 100vh;
+    display: flex;
+   justify-content: center;/* 가로정렬 */
+    align-items: center; /*세로정렬 */
+}
+.background_image{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+}
+.login_form a img{
+    margin: 50px auto;
+}
+.login_form a img,
+.login_form input{
+    display: block;
+    margin: none auto;
+}
+.login_form input{
+    width: 360px;
+    height: 50px;
+    margin-bottom: 25px;
+    border-radius: 50px;
+    border : 3px solid #ffffff;
+    background-color: transparent;
+    font-size: 1.25em;
+    color: #fff;
+    padding-left: 20px;
+    font-weight: bold;
+}
+.login_form input::placeholder{
+    color: #d9d9d9;
+    font-weight: bold;
+}
+.login_form{
+    font-weight: bold;
+    padding:0px 60px 100px 60px;
+    border-top:5px solid #5d63f9;
+    border-bottom:5px solid #5d63f9;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.5px);
+    -webkit-backdrop-filter: blur(6.5px);
+
+}
+.search{
+    display:flex;
+    justify-content: space-around;
+    margin-bottom: 25px;
+    
+}
+.search a{
+    color: #fff;
+    font-size: 1.1em;
+    text-decoration: none;
+    font-weight: bold;
+}
+.search a:hover{
+    text-decoration: underline;
+}
+.login_form button{
+    width: 360px;
+    height: 50px;
+    border-radius: 50px;
+    border : none;
+    margin : auto;
+    background-color: #5d63f9;
+    color:#fff;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.login_form button:hover{
+    background-color: #4c51e9;
+}
+.login_form button:active{
+    background-color: #3136c2;
+}
