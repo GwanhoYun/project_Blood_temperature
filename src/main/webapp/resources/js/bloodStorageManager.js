@@ -64,23 +64,40 @@ var myChart = new Chart(ctx, {
 });
 
 
-//실시간 온도 출력을 위한 함수 
+//각 혈액 제품의 권장 보관 온도 범위를 설정합
+var temperatureThresholds = {
+    "RBC": { min: 1, max: 6 },
+    "PLT": { min: 1, max: 6 },
+    "FFP": { min: -30, max: -18 }, 
+    "Cryo": { min: -30, max: -18 },
+    "LRB": { min: 1, max: 6 },
+    "IB": { min: 1, max: 6 },
+    "WB": { min: 1, max: 6 }
+};
+
+
+// 실시간 온도 출력을 위한 함수
 function fetchBloodData() {
     fetch('/newtemdata')
         .then(response => response.json())
         .then(data => {
+            // 경고 메시지를 초기화합니다.
+            var warningMessage = '';
+
             // 데이터를 업데이트
             data.forEach(blood => {
                 // WB 혈액 제품의 시간을 기준으로 labels 배열에 시간을 추가 (그래프)
-                    if (blood.blood_product === "WB") {
-                        chartData.labels.push(blood.record_Time);
-                    }
+                if (blood.blood_product === "WB") {
+                    chartData.labels.push(blood.record_Time);
+                }
 
                 // 각 데이터셋에 해당하는 데이터를 추가 (그래프)
                 chartData.datasets.forEach(dataset => {
                     if (dataset.label === blood.blood_product) {
                         dataset.data.push(blood.temperature);
                     }
+                    
+                    
                 });
 
                 // 데이터 배열이 최대 크기보다 크면 맨 앞 데이터를 제거 (그래프)
@@ -96,18 +113,28 @@ function fetchBloodData() {
                 if (element) {
                     element.innerText = blood.temperature;
                 }
+                
+                // 권장 보관 온도 범위를 초과하는지 확인하고 경고 메시지를 설정
+                const thresholds = temperatureThresholds[blood.blood_product];
+                if (blood.temperature > thresholds.max) {
+                    warningMessage += `${blood.blood_product} 권장 보관 온도 초과 ${thresholds.max}°C 이하로 설정하세요. 현재 온도 : ${blood.temperature}°C<br>`;
+                } else if (blood.temperature < thresholds.min) {
+                    warningMessage += `${blood.blood_product} 권장 보관 온도 미만 ${thresholds.min}°C 이상으로 설정하세요. 현재 온도 : ${blood.temperature}°C<br>`;
+                }
+                
             });
 
+            // 경고 메시지 출력
+            document.querySelector('.warning_text').innerHTML = warningMessage;
             // 그래프를 업데이트
             myChart.update();
         })
         .catch(error => console.error('Error fetching blood data:', error));
 }
 
-// 페이지 로드 시 데이터를 한 번 가져오고, 그 이후에 12초마다 데이터를 갱신합니다.
+// 페이지 로드 시 데이터를 한 번 가져오고, 그 이후에 12초마다 데이터를 갱신
 fetchBloodData();
 setInterval(fetchBloodData, 12000);
-
 
 
 
