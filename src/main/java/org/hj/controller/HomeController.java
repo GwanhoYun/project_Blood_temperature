@@ -20,7 +20,7 @@ public class HomeController {
         @RequestMapping(value = "/home", method = RequestMethod.GET)
         public String home () {
          return "index";
-        }
+        } 
         
         @RequestMapping(value = "/adminLogin", method = RequestMethod.GET)
         public String member () {
