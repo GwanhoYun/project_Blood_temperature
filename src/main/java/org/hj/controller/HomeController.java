@@ -15,9 +15,18 @@ import java.util.Locale;
 @Controller
 public class HomeController {
 
-	@Autowired
-    private PatientService patientService;
 
+	
+        @RequestMapping(value = "/home", method = RequestMethod.GET)
+        public String home () {
+         return "index";
+        } 
+        
+        @RequestMapping(value = "/adminLogin", method = RequestMethod.GET)
+        public String member () {
+         return "admin_login";
+        }
+ 
 
 }
 

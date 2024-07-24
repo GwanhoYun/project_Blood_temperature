@@ -200,7 +200,7 @@ body {
         <div class="header_container">
             <div class="header_Logo">
                 <a href="index.html">
-                    <img src="img/Logo_white 1.png" alt="Hospital_Logo_image">
+                    <img src="/resources/img/Logo_white 1.png" alt="Hospital_Logo_image">
                 </a>
             </div>
             <div class="login_info">
@@ -223,8 +223,8 @@ body {
         <ul>
             <li><a href="adminPage.html">차트리스트</a></li>
             <li><a href="writeChart.html">차트작성</a></li>
-            <li><a href="bloodStorageManager.html">혈액 보유량</a></li>
-            <li><a href="#">수술</a></li>
+            <li><a href="kakako">혈액 요청</a></li>
+            <li><a href="/BloodCareSystem">혈액 관리</a></li>
             <li><a href="#">스케줄</a></li>
             <li><a href="#">스케줄수정</a></li>
             <li><a href="#">외래</a></li>

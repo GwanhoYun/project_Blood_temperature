@@ -29,7 +29,7 @@ public class MemberController {
 		return "board/list";
 	}
 	
-	
+	 
 	
 	
 	// 로그인 페이지
